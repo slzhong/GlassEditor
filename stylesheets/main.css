@@ -41,6 +41,19 @@ header{
   left: 50%;
   margin: -250px 0 0 -500px;
 }
+::-webkit-scrollbar
+{
+  width: 10px;
+  height: 10px; /* for horizontal scrollbars */
+}
+::-webkit-scrollbar-track
+{
+  background: transparent;
+}
+::-webkit-scrollbar-thumb
+{
+  background: #999;
+}
 
 /*--------------------------------------- */
 /*THE EDITING AREA*/
