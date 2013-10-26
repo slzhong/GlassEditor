@@ -48,6 +48,8 @@
 
 /* Main content area, excluding footer. */
 .preview section {
+  max-width: 640px;
+  max-height: 360px;
   margin: 40px 40px 0 40px;
   padding: 0;
   position: absolute;
