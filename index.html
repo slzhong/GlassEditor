@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Glass Editor</title>
+  <link rel="stylesheet" href="stylesheets/main.css">
+  <link rel="stylesheet" href="stylesheets/glass.css">
+</head>
+<body>
+  
+  <div id="page-wrap">
+    <header>
+      <h1 class="page-title">Glass Editor</h1>
+    </header>
+    <div class="page-main">
+      <aside>
+        <div class="editor-options">
+          <p>
+            <button class="editor-btn editor-template-btn">Templates</button>
+          </p>
+          <p></p>
+          <p></p>
+        </div>
+        <textarea class="editor" id="editor"></textarea>
+      </aside>
+      <article>
+        <div class="preview" id="preview">
+          <div class="preview-hint">
+            <p>Paste your <em class="yellow">HTML</em> in the right to see the preview</p>
+            <p>Or click the "<strong class="blue">Template</strong>" button to see some templates</p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="template-container">
+      <div class="template preview">
+<article>
+  <section>
+    <p class="text-auto-size">This <em class="yellow">paragraph</em> auto-resizes according to the <strong class="blue">HTML</strong> content length.
+    </p>
+  </section>
+</article>
+      </div>
+      <div class="template preview">
+<article class="photo">
+  <img src="https://mirror-api-playground.appspot.com/links/filoli-spring-fling.jpg" width="100%" height="100%">
+  <div class="photo-overlay"/>
+  <section>
+    <p class="text-auto-size">Spring Fling Fundraiser at Filoli</p>
+  </section>
+</article>
+      </div>
+      <div class="template preview">
+<article>
+  <figure>
+    <img src="https://mirror-api-playground.appspot.com/links/lincoln.png">
+  </figure>
+  <section>
+    <table class="text-small align-justify"> 
+      <tbody>
+        <tr>
+          <td>Born</td>
+          <td>Feb 12, 1809</td>
+        </tr>
+        <tr>
+          <td>Died</td>
+          <td>Apr 15, 1865</td>
+        </tr>
+        <tr>
+          <td>Height</td>
+          <td>6' 4"</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</article>
+      </div>
+      <div class="template preview">
+<article>
+  <section>
+    <div class="text-x-large" style="">
+      <p class="yellow">8:00<sub>PM</sub></p>
+      <p>Dinner with folks tonight</p>
+    </div>
+  </section>
+  <footer>
+    <div>Their place</div>
+  </footer>
+</article>
+      </div>
+      <div class="template preview">
+<article>
+  <section>
+    <div class="layout-figure">
+      <div class="align-center">
+        <p class="text-x-large">BOS</p>
+        <img src="https://mirror-api-playground.appspot.com/links/plane.png" width="50" height="50">
+        <p class="text-x-large">SFO</p>
+      </div>
+      <div>
+        <div class="text-normal">
+          <p>Virgin America 351</p>
+          <p>Gate B38</p>
+          <p>8:35am</p>
+          <p class="green">On Time</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+      </div>
+      <div class="template preview">
+<article>
+  <section>
+    <div class="layout-two-column">
+      <div class="align-center">
+        <p>Celtics</p>
+        <p class="text-x-large">101</p>
+      </div>
+      <div class="align-center">
+        <p>Bulls</p>
+        <p class="text-x-large">95</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p>Final Score</p>
+  </footer>
+</article>
+      </div>
+    </div>
+  </div>
+
+  <!--<script type="text/javascript" src="javascripts/Template.js"></script>-->
+  <script type="text/javascript" src="javascripts/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.editable.min.js"></script>
+  <script type="text/javascript" src="javascripts/GlassEditor.js"></script>
+  <script type="text/javascript">
+    window.onload = function(){
+      GlassEditor.init();
+    }
+  </script>
+
+</body>
+</html>

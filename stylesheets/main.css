@@ -1,0 +1,138 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300);
+
+/*--------------------------------------- */
+/*RESET & GENERAL*/
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  transition: background 0.3s, border 0.3s, color 0.3s;
+}
+#page-wrap{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+header{
+  width: 100%;
+  height: 50px;
+  background: #ccc;
+  color: #fff;
+}
+.page-title{
+  height: 50px;
+  margin-left: 20px;
+  line-height: 50px;
+  font-weight: 300;
+}
+.page-main{
+  width: 1000px;
+  height: 550px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -250px 0 0 -500px;
+}
+
+/*--------------------------------------- */
+/*THE EDITING AREA*/
+aside{
+  width: 300px;
+  height: 550px;
+  float: right;
+}
+.editor-options{
+	width: 100%;
+	height: 100px;
+	background: #ccc;
+}
+.editor-btn{
+  background: #bbb;
+  color: #fff;
+  cursor: pointer;
+}
+.editor-btn:hover{
+  background: #09d;
+}
+.editor-template-btn{
+  width: 80px;
+  height: 30px;
+}
+.editor{
+	width: 100%;
+	height: 450px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	color: #999;
+	font-size: 18px;
+	font-weight: 300;
+	line-height: 25px;
+	resize: none;
+}
+.editor:focus{
+	border-color: #999;
+	color: #333;
+}
+
+/*---------------------------------------*/
+/*THE PREVIEW WINDOW*/
+article{
+	width: 701px;
+	height: 550px;
+	border: 1px solid #ccc;
+}
+.preview{
+	width: 640px;
+	height: 360px;
+	margin: 95px auto;
+	background: #000;
+}
+.preview-hint{
+	width: 100%;
+	height: 180px;
+	padding-top: 90px;
+	text-align: center;
+}
+.preview-hint p{
+	font-size: 25px;
+	line-height: 90px;
+	color: #fff;
+}
+
+/*--------------------------------------- */
+/*TEMPLATE COLUMN*/
+.template-container{
+  width: 370px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -400px;
+  background: #aaa;
+  overflow: auto;
+  transition: margin 0.3s ease-out;
+}
+.template-container-show{
+  margin-left: 0;
+}
+.template{
+  margin: -50px 0 -160px -143px;
+  -webkit-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
+  cursor: pointer;
+}
+.template:last-child{
+  margin-bottom: -30px;
+}
+.template-selected{
+  box-shadow: 0 0 10px #09d;
+}

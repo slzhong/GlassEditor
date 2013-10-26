@@ -1,0 +1,631 @@
+/*--------------------------------------- */
+/* RESET */
+.preview * {
+ font: inherit;
+ color: inherit;
+}
+
+/*--------------------------------------- */
+/* BASIC COMPONENTS */
+
+/* Base card size, colors, and fonts. */
+.preview article {
+  width: 640px;
+  height: 360px;
+  display: block;
+  overflow: hidden;
+
+  position: relative;
+
+  background-color: #000;
+  color: #fff;
+
+  font-family: 'Roboto';
+  font-weight: 100;
+  font-size: 40px;
+  text-shadow: 0 1px 1px #000;
+}
+
+/* Modifications to allow content to flow across pages. */
+.preview article.auto-paginate {
+  overflow: visible;
+
+  /* Keeps contents 40px from the top/bottom of the screen. */
+  height: 280px;
+  padding: 40px 0px;
+
+  /* Actually causes the pagination. */
+  -webkit-column-width: 640px;
+  -webkit-column-gap: 0px;
+  -webkit-column-rule: 0px solid #000;
+}
+
+/* Keeps content of pages 40px away from the left/right edges of the screen. */
+.preview article.auto-paginate > * {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+/* Main content area, excluding footer. */
+.preview section {
+  margin: 40px 40px 0 40px;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 80px;
+  overflow: hidden;
+}
+
+/* Remove margin on top and bottom for sections that are inside
+   auto-paginating articles. */
+.preview article.auto-paginate > section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* Footer containing timestamp, auxiliary info. */
+.preview footer {
+  margin: 0 40px 26px 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.4em;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+/* Force footer content to be single-line, ellipsized. */
+.preview footer > div, .preview footer > p, .preview footer > time, .preview footer > h1, .preview footer > h2, .preview footer > h3 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.preview footer img {
+  padding: 0 10px 10px 10px;
+}
+
+.preview footer img.left {
+  padding-left: 0;
+}
+
+.preview footer img.right {
+  padding-right: 0;
+}
+
+/* Left panel content */
+.preview figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  overflow: hidden;
+}
+
+/** If a figure is shown, offset the section and footer to the right. */
+.preview figure ~ section {
+  left: 230px;
+}
+
+.preview figure ~ footer {
+  left: 230px;
+}
+
+
+/*--------------------------------------- */
+/* ICONS */
+
+/* 30x30 icon size */
+.preview img.icon-small {
+  width: 30px;
+  height: 30px;
+}
+
+/* For text sizes smaller than the icon, center the icon vertically. */
+.preview .text-x-small img.icon-small {
+  vertical-align: -4px;
+}
+
+.text-small img.icon-small {
+  vertical-align: -3px;
+}
+
+
+/*--------------------------------------- */
+/* LISTS */
+
+.preview ul {
+  list-style-type: none;
+}
+
+.preview ol {
+  list-style-position: inside;
+}
+
+.preview ul li, .preview ol li {
+  border-bottom: 1px solid #333;
+  padding: 6px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.preview ul.no-border li, .preview ol.no-border li {
+  border-bottom: none;
+}
+
+/* Remove top padding for lists that are the first element in a section. */
+.preview section > ul:first-child li:first-child, .preview ol:first-child li:first-child {
+  padding-top: 0;
+}
+
+/* Remove bottom padding for lists that are the last element in a section. */
+.preview section > ul:last-child li:last-child, .preview ol:last-child li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+
+/*--------------------------------------- */
+/* TABLES */
+
+.preview table {
+  width: 100%;
+  max-width: 560px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.preview tr {
+  border-bottom: 1px solid #333;
+  padding: 0;
+  max-width: 560px;
+}
+
+.preview tr:last-child {
+  border-bottom: none;
+}
+
+.preview table.no-border tr {
+  border-bottom: none;
+}
+
+.preview td {
+  color: #fff;
+  padding: 12px 0.4em;
+  overflow: hidden;
+  vertical-align: baseline;
+  max-width: 560px;
+}
+
+.preview td:first-child {
+  padding-left: 0;
+}
+
+.preview td:last-child {
+  padding-right: 0;
+}
+
+/* Remove top padding for tables that are the first element in a section. */
+.preview section > table:first-child tr:first-child td, .preview table:first-child th td {
+  padding-top: 0;
+}
+
+/* Remove bottom padding for tables that are the last element in a section. */
+.preview table:last-child tr:last-child td {
+  padding-bottom: 0;
+}
+
+/* When justifying, align the leftmost column to the left, the rightmost column to the right
+   and everything else to the center. */
+.preview table.align-justify {
+  text-align: center;
+}
+
+.preview table.align-justify td:first-child {
+  text-align: left;
+}
+
+.preview table.align-justify td:last-child {
+  text-align: right;
+}
+
+
+/*---------------------------------------
+/* MISC */
+
+.preview hr {
+  clear: both;
+  margin: 8px 0 14px;
+  height: 0;
+  border-top: 1px solid #333;
+}
+
+
+/*--------------------------------------- */
+/* FLOATS */
+
+.preview .left {
+  float: left;
+}
+
+.preview .right {
+  float: right;
+}
+
+.preview footer time {
+  float: right;
+}
+
+
+/*--------------------------------------- */
+/* TYPOGRAPHY */
+
+.preview b, .preview strong {
+  font-weight: 300;
+}
+
+.preview i, .preview em {
+  font-style: italic;
+}
+
+.preview sup {
+  font-size: 0.5em;
+  line-height: 0.3em;
+  vertical-align: super;
+  padding-left: 0.1em;
+}
+
+.preview sub {
+  font-size: 0.5em;
+  line-height: 0.3em;
+  vertical-align: baseline;
+  padding-left: 0.1em;
+}
+
+/* Alignment */
+.preview .align-center {
+  text-align: center;
+}
+
+.preview .align-left {
+  text-align: left;
+}
+
+.preview .align-right {
+  text-align: right;
+}
+
+.preview .align-justify {
+  text-align: justify;
+}
+
+/*
+  Text sizing. We use 5 sizes: 70px, 50px, 40px, 34px, 30px. We additionally have a 90px size for
+  very short, important strings and a 26px size for footers.
+ */
+.preview .text-xx-large {
+  font-weight: 100;
+  font-size: 90px;
+  letter-spacing: -1px;
+  line-height: 1.2em;
+}
+
+.preview .text-x-large {
+  font-weight: 100;
+  font-size: 70px;
+  letter-spacing: -1px;
+  line-height: 1.2em;
+}
+
+.preview .text-large {
+  font-weight: 100;
+  font-size: 50px;
+  letter-spacing: 0;
+  line-height: 1.2em;
+}
+
+.preview .text-normal {
+  font-weight: 100;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: 1.2em;
+}
+
+.preview .text-small {
+  font-weight: 100;
+  font-size: 34px;
+  letter-spacing: 0;
+  line-height: 1.2em;
+}
+
+.preview .text-x-small {
+  font-weight: 100;
+  font-size: 30px;
+  letter-spacing: 1px;
+  line-height: 1.18em;
+}
+
+/* Footer-style text. */
+.preview .text-minor {
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.2em;
+}
+
+/* Detected by the javascript to automatically size text. */
+.preview .text-auto-size {
+  width: 100%;
+  height: 100%;
+  /*visibility: hidden;*/
+}
+
+/* Forces text onto a single line, ellipsized at the end. */
+.preview .single-line {
+  height: 1.2em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+/*---------------------------------------
+/* LAYOUT */
+
+/* Grid boundary for all layouts. */
+[class^="layout-"] {
+  position: relative;
+  left: -29px;
+  right: 29px;
+  width: 618px;
+  height: 100%;
+  overflow: hidden;
+}
+
+[class^="layout-"]:after {
+  clear: both;
+}
+
+/* Div padding and borders for all layouts. */
+[class^="layout-"] > div {
+  float: left;
+  height: 100%;
+  padding: 10px 29px 10px 30px;
+  border-right: 1px solid #666;
+  overflow: hidden;
+}
+
+[class^="layout-"] > div:last-child {
+  border-right: none;
+  padding-right: 30px;
+}
+
+/* Allow the borders to be suppressed */
+[class^="layout-"].no-border > div {
+  border-right: none;
+  padding-right: 30px;
+}
+
+/* Layout with 2 equally-sized columns. */
+.preview .layout-two-column > div {
+  width: 249px;
+}
+
+/* Layout with 3 equally-sized columns. */
+.preview .layout-three-column > div {
+  width: 146px;
+}
+
+/* Layout where the 1st column is as wide as a <figure>, and the 2nd column fills the remainder. */
+.preview .layout-figure > div:first-child {
+  width: 169px;
+}
+
+.preview .layout-figure > div:nth-child(2) {
+  width: 329px;
+}
+
+/* Always suppress borders in the footer. */
+.preview footer [class^="layout-"] > div {
+  border: none;
+  padding-right: 30px;
+}
+
+
+/*---------------------------------------
+/* COLORS */
+
+.preview .red {
+  color: #c33;
+}
+
+.preview .yellow {
+  color: #db1;
+}
+
+.preview .green {
+  color: #9c3;
+}
+
+.preview .blue {
+  color: #34a7ff;
+}
+
+.preview .white {
+  color: #fff;
+}
+
+.preview .gray {
+  color: #808080;
+}
+
+.preview .muted {
+  color: #808080;
+}
+
+
+/*---------------------------------------
+/* ANSWER CARD METADATA */
+
+.preview .gls-ma, .gls-tts {
+  display: none;
+}
+
+
+/*--------------------------------------- */
+/* Default template styling */
+
+/* Force text content to the top of the content area. */
+.preview article:not([class]) .text-xx-large:first-child {
+  position: relative;
+  top: -16px;
+}
+
+.preview article:not([class]) .text-x-large:first-child {
+  position: relative;
+  top: -14px;
+}
+
+.preview article:not([class]) .text-large:first-child {
+  position: relative;
+  top: -8px;
+}
+
+.preview article:not([class]) .text-normal:first-child {
+  position: relative;
+  top: -5px;
+}
+
+.preview article:not([class]) .text-small:first-child {
+  position: relative;
+  top: -5px;
+}
+
+.preview article:not([class]) .text-x-small:first-child {
+  position: relative;
+  top: -5px;
+}
+
+
+/*--------------------------------------- */
+/* Photo template styling */
+
+.preview article.photo section {
+  top: 170px;
+  bottom: 80px;
+}
+
+/* Overlay gradient to allow text to be read over the image. */
+.preview article.photo div.photo-overlay {
+  display: block;
+  position: absolute;
+  top: 108px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.9));
+}
+
+.preview article.photo .text-x-large {
+  position: relative;
+  top: -10px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.preview article.photo .text-large {
+  position: relative;
+  top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.preview article.photo .text-normal {
+  position: relative;
+  top: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.preview article.photo .text-small {
+  position: relative;
+  top: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.preview article.photo .text-x-small {
+  position: relative;
+  top: -2px;
+  overflow: hidden;
+}
+
+.preview article.photo section img.left {
+  margin-right: 10px;
+}
+
+.preview article.photo section img.right {
+  margin-left: 10px;
+}
+
+/*--------------------------------------- */
+/* Hide all pages except first one. Lets us render first page without involving
+   Javascript. */
+
+.preview article {
+  visibility: hidden;
+}
+
+.preview article:first-of-type {
+  visibility: visible;
+}
+
+/* Overlay gradient to allow text to be read over the image. */
+
+/* For cards with two lines of text (excluding footer)
+ * ex: hybrid templates & those needing more bottom readability
+ */
+.preview div.overlay-gradient-tall {
+  display: block;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.8));
+}
+
+/* For cards with one line of text (excluding footer)
+ * ex: photos, videos, people
+ */
+.preview div.overlay-gradient-medium {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.8));
+}
+
+/* For cards with low text
+ * ex: footer, tooltips
+ */
+.preview div.overlay-gradient-short {
+  display: block;
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.6));
+}
