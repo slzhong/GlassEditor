@@ -15,11 +15,14 @@
     <div class="page-main">
       <aside>
         <div class="editor-tools">
-          <p>
+          <div class="editor-p-large">
             <button class="editor-btn editor-template-btn">Templates</button>
+            <button class="editor-btn editor-single-btn">Single</button>
+            <button class="editor-btn editor-multi-btn">Multi</button>
             <button class="editor-btn editor-clear-btn">Clear</button>
-          </p>
-          <p>
+            <button class="editor-btn editor-export-btn">Export</button>
+          </div>
+          <div class="editor-p-small">
             <button class="editor-btn editor-add-btn" title="section">S</button>
             <button class="editor-btn editor-add-btn" title="div">D</button>
             <button class="editor-btn editor-add-btn" title="p">P</button>
@@ -30,16 +33,64 @@
             <button class="editor-btn editor-add-btn" title="li">L</button>
             <button class="editor-btn editor-add-btn" title="figure">F</button>
             <button class="editor-btn editor-add-btn" title="img">I</button>
-          </p>
-          <p class="editor-option"></p>
+          </div>
+          <div class="editor-p-small">
+            <div class="editor-class-selector">
+              <button class="editor-class-type">Size</button>
+              <div class="editor-class-content">
+                <ul>
+                  <li class="editor-class-item">text-xx-large</li>
+                  <li class="editor-class-item">text-x-large</li>
+                  <li class="editor-class-item">text-large</li>
+                  <li class="editor-class-item">text-normal</li>
+                  <li class="editor-class-item">text-small</li>
+                  <li class="editor-class-item">text-x-small</li>
+                </ul>
+              </div>
+            </div>
+            <div class="editor-class-selector">
+              <button class="editor-class-type">Align</button>
+              <div class="editor-class-content">
+                <ul>
+                  <li class="editor-class-item">align-center</li>
+                  <li class="editor-class-item">align-left</li>
+                  <li class="editor-class-item">align-right</li>
+                  <li class="editor-class-item">align-justify</li>
+                </ul>
+              </div>
+            </div>
+            <div class="editor-class-selector">
+              <button class="editor-class-type">Color</button>
+              <div class="editor-class-content">
+                <ul>
+                  <li class="editor-class-item red">red</li>
+                  <li class="editor-class-item yellow">yellow</li>
+                  <li class="editor-class-item green">green</li>
+                  <li class="editor-class-item blue">blue</li>
+                  <li class="editor-class-item white">white</li>
+                  <li class="editor-class-item gray">gray</li>
+                  <li class="editor-class-item muted">muted</li>
+                </ul>
+              </div>
+            </div>
+            <button class="editor-btn editor-add-style">Original</button>
+          </div>
         </div>
         <textarea class="editor" id="editor"></textarea>
       </aside>
       <article>
-        <div class="preview" id="preview">
+        <div class="preview preview-single" id="preview">
           <div class="preview-hint">
             <p>Paste your <em class="yellow">HTML</em> in the right to see the preview</p>
             <p>Or click the "<strong class="blue">Template</strong>" button to see some templates</p>
+          </div>
+        </div>
+        <div class="cards-dock">
+          <div class="cards-container">
+            <div class="card-container card-container-current card-container-last">
+              <div class="preview card" data-cardId="0"></div>
+            </div> 
+            <button class="cards-add">+</button>
           </div>
         </div>
       </article>

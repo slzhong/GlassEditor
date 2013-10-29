@@ -7,12 +7,13 @@
   padding: 0;
   outline: none;
   border: none;
+  list-style: none;
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  transition: background 0.3s, border 0.3s, color 0.3s;
+  transition: background 0.3s, border 0.3s, color 0.3s, margin 0.3s ease-out;
 }
 #page-wrap{
   width: 100%;
@@ -24,7 +25,7 @@
 header{
   width: 100%;
   height: 50px;
-  background: #ccc;
+  background: #aaa;
   color: #fff;
 }
 .page-title{
@@ -40,6 +41,7 @@ header{
   top: 50%;
   left: 50%;
   margin: -250px 0 0 -500px;
+  overflow: hidden;
 }
 ::-webkit-scrollbar
 {
@@ -65,15 +67,20 @@ aside{
 .editor-tools{
 	width: 100%;
 	height: 100px;
-	background: #ccc;
+	background: #aaa;
 }
 .editor-tools p{
   width: 100%;
+}
+.editor-p-large{
+  height: 40px;
+}
+.editor-p-small{
   height: 30px;
 }
 .editor-btn{
   float: left;
-  background: #bbb;
+  background: #aaa;
   color: #fff;
   cursor: pointer;
 }
@@ -85,18 +92,63 @@ aside{
 }
 .editor-template-btn{
   width: 80px;
-  height: 30px;
+  height: 40px;
 }
 .editor-clear-btn{
   width: 50px;
-  height: 30px;
+  height: 40px;
+}
+.editor-single-btn, .editor-multi-btn{
+  width: 60px;
+  height: 40px;
+}
+.editor-export-btn{
+  width: 50px;
+  height: 40px;
 }
 .editor-add-btn{
   width: 30px;
   height: 30px;
 }
-.editor-option{
-  height: 40px;
+.editor-add-style{
+  width: 90px;
+  height: 30px;
+}
+.editor-class-selector{
+  width: 70px;
+  height: 30px;
+  float: left;
+}
+.editor-class-type{
+  width: 70px;
+  height: 30px;
+  background: #aaa;
+  color: #fff;
+  cursor: pointer;
+}
+.editor-class-type:hover{
+  background: #09d;
+}
+.editor-class-type:active{
+  background: #039;
+}
+.editor-class-content{
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  color: #000;
+  display: none;
+}
+.editor-class-item{
+  color: #fff;
+  background: #555;
+  cursor: pointer;
+}
+.editor-class-item:hover{
+  background: #444;
+}
+.editor-class-item:active{
+  background: #333;
 }
 .editor{
 	width: 100%;
@@ -124,8 +176,49 @@ article{
 .preview{
 	width: 640px;
 	height: 360px;
-	margin: 95px auto;
 	background: #000;
+  color: #fff;
+}
+.preview-single{
+  margin: 95px auto;
+}
+.preview-multi{
+  margin: 20px auto;
+}
+.cards-dock{
+  width: 100%;
+  height: 130px;
+  background: #bbb;
+  margin-top: 38px;
+  overflow: auto;
+}
+.cards-container{
+  height: 90px;
+  margin: 15px 0;
+}
+.card-container{
+  width: 160px;
+  height: 90px;
+  float: left;
+  margin: 0 10px;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+}
+.card{
+  margin: -135px -240px;
+  -webkit-transform: scale(0.25, 0.25);
+  -ms-transform: scale(0.25, 0.25);
+  transform: scale(0.25, 0.25);
+}
+.cards-add{
+  width: 160px;
+  height: 90px;
+  margin: 0 10px;
+  background: #000;
+  color: #fff;
+  font-size: 65px;
+  cursor: pointer;
 }
 .preview-hint{
 	width: 100%;
@@ -150,7 +243,6 @@ article{
   margin-left: -400px;
   background: #aaa;
   overflow: auto;
-  transition: margin 0.3s ease-out;
 }
 .template-container-show{
   margin-left: 0;
@@ -167,4 +259,28 @@ article{
 }
 .template-selected{
   box-shadow: 0 0 10px #09d;
+}
+
+/*---------------------------------------
+/* COLORS */
+.red {
+  color: #c33;
+}
+.yellow {
+  color: #db1;
+}
+.green {
+  color: #9c3;
+}
+.blue {
+  color: #34a7ff;
+}
+.white {
+  color: #fff;
+}
+.gray {
+  color: #808080;
+}
+.muted {
+  color: #808080;
 }
