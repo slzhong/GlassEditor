@@ -1,4 +1,4 @@
 GlassEditor
 ===========
 
-A online editor for google glass
+An online editor for google glass
