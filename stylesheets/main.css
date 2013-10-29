@@ -13,7 +13,7 @@
   font-weight: 300;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  transition: background 0.3s, border 0.3s, color 0.3s, margin 0.3s ease-out;
+  transition: background 0.3s, border 0.3s, color 0.3s, opacity 0.3s, margin 0.3s ease-out;
 }
 #page-wrap{
   width: 100%;
@@ -206,12 +206,34 @@ article{
   cursor: pointer;
 }
 .card{
-  margin: -135px -240px;
+  margin: -156px -240px;
   -webkit-transform: scale(0.25, 0.25);
   -ms-transform: scale(0.25, 0.25);
   transform: scale(0.25, 0.25);
 }
-.cards-add{
+.card-delete{
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin: 2px 0 0 138px;
+  background: #c33;
+  color: #fff;
+  font-weight: 300;
+  font-size: 15px;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.card-delete:hover{
+  background: #c55;
+}
+.card-delete:active{
+  background: #c00;
+}
+.card-container:hover .card-delete{
+  opacity: 1;
+}
+.card-add{
   width: 160px;
   height: 90px;
   margin: 0 10px;

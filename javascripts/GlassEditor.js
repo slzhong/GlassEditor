@@ -26,7 +26,10 @@ var GlassEditor = {
 		$('.card-container').click(
 			GlassEditor.showCard()
 		);
-		$('.cards-add').click(
+		$('.card-delete').click(
+			GlassEditor.deleteCard()
+		);
+		$('.card-add').click(
 			GlassEditor.addCard()
 		);
 		$('.editor-clear-btn').click(
@@ -106,25 +109,54 @@ var GlassEditor = {
 	}
 	,addCard : function(){
 		return function(){
-			var id = 0;
 			var temp = $('.card-container-last');
 			var next = temp.clone();
+			var id = parseInt(temp.children('.card').attr('data-cardID'));
 			$('.card-container-current').removeClass('card-container-current');
-			id = parseInt(temp.children('.card').attr('data-cardID'));
 			temp.removeClass('card-container-last');
 			next.addClass('card-container-current');
 			next.insertAfter(temp);
 			next.children('.card').html('').attr('data-cardID', id + 1);
 			next.click(GlassEditor.showCard());
+			next.children('.card-delete').click(GlassEditor.deleteCard());
 			GlassEditor.resizeCardContainer();
 			$('#editor').val(next.children('.card').html());
 			$('#preview').html(next.children('.card').html());
+		}
+	}
+	,deleteCard : function(){
+		return function(){
+			var temp = 0;
+			var target = $(this).parent();
+			var pos = parseInt($(this).siblings('.card').attr('data-cardID'));
+			if(target.siblings().length == 1){
+				return false;
+			}
+			if(target.hasClass('card-container-last')){
+				target.prev().addClass('card-container-last');
+			}
+			if(target.hasClass('card-container-current')){
+				if(target.hasClass('card-container-last')){
+					target.prev().addClass('card-container-current');
+				}
+				else{
+					target.next().addClass('card-container-current');
+				}
+			}
+			target.remove();
+			for(var i = pos; i < $('.card').length; i++){
+				temp = parseInt($($('.card')[i]).attr('data-cardID'));
+				$($('.card')[i]).attr('data-cardID', temp - 1);
+			}
 		}
 	}
 	,clearEditor : function(){
 		return function(){
 			$('#editor').val('');
 			$('#preview').html('');
+			if($('#preview').hasClass('preview-multi')){
+				$('.card-container-current').children('.card').html('');
+			}
 		}
 	}
 	,insertElement : function(){
@@ -170,6 +202,7 @@ var GlassEditor = {
 		return function(){
 			$('#editor').val($('#editor').val() + '\n<style>\n\n</style>');
 			$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = $('#editor').val().length - 9;
+			(GlassEditor.applyChanges())();
 		}
 	}
 	,editInPlace : function(){
@@ -204,7 +237,7 @@ var GlassEditor = {
 	}
 	,exportCard : function(){
 		return function(){
-			alert(JSON.stringify($('#editor').val()));
+			
 		}
 	}
 }
