@@ -7,17 +7,20 @@ var GlassEditor = {
 		$('#editor').keyup(
 			GlassEditor.applyChanges()
 		);
+		$('#preview').click(
+			GlassEditor.editInPlace()
+		);
 		$('.editor-template-btn').click(
 			GlassEditor.showTemplates()
 		);
 		$('.editor-clear-btn').click(
 			GlassEditor.clearEditor()
 		);
-		$('.template').click(
-			GlassEditor.applyTemplate()
-		);
 		$('.editor-add-btn').click(
 			GlassEditor.addElement()
+		);
+		$('.template').click(
+			GlassEditor.applyTemplate()
 		);
 	}
 	,applyChanges : function(){
@@ -80,6 +83,11 @@ var GlassEditor = {
 			$('#editor').focus();
 			$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
 			$('#preview').html($('#editor').val());
+		}
+	}
+	,editInPlace : function(){
+		return function(){
+			alert('fuck');
 		}
 	}
 }
