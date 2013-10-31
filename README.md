@@ -16,5 +16,6 @@ ps. It's still a buggy prototype, feel free to report bugs!
  4. For styles, we have three types of class names you can pick from. Move your cursor to a proper place (in the middle of the quotation marks) then click a type you want, such as color, then select a property, the class name will be added automatically.
  5. If you don't know how to design a card, you can click the "Template" button to see some templates and then edit them the way you want.
  6. You can also edit a bundle of cards here, just click the "Multi" button to switch to the bundle mode, or click the "Single" button to switch back.
+ 7. Don't like what you've done? Click the clear button to cast the Obliviate charm!
 
   [1]: http://sherlock917.github.io/GlassEditor/index.html
