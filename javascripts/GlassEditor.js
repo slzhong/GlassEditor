@@ -170,6 +170,10 @@
 		else if(type == 'li' || type == 'tr' || type == 'td'){
 			result = '<' + type +'></' + type + '>';
 			cursorMove = 4;
+		}
+		else if(type == 'em' || type == 'strong'){
+			result= '<' + type +' class=""></' + type + '>';
+			cursorMove = 11 + type.length;
 		} else{
 			result = '<' + type + ' class=""></' + type + '>\n';
 			cursorMove = 11 + type.length;
