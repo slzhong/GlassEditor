@@ -1,12 +1,12 @@
 (function(){
 	
-	var GlassEditorNew = {
+	window.GlassEditor = {
 		main : function(){
 			eventHandler();
 		}
 	}
 
-	window.onload = GlassEditorNew.main();
+	window.onload = GlassEditor.main();
 
 	function eventHandler(){
 		// $('.editor-export-btn').click(
