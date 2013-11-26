@@ -2,6 +2,7 @@
 	
 	window.GlassEditor = {
 		main : function(){
+			init();
 			eventHandler();
 		}
 	}
@@ -9,12 +10,24 @@
 	window.onload = GlassEditor.main();
 
 	function eventHandler(){
-		// $('.editor-export-btn').click(
-		// 	exportCard
-		// );
-		$('#editor').keyup(
-			applyChanges
+		$('.editor-export-btn').click(
+			exportCards
 		);
+		$('.preview-new').click(
+			removeHint
+		);
+		$('#preview').click(function(){
+			switchFocus('preview');
+		});
+		$('#preview').keyup(function(){
+			applyChanges('preview');
+		});
+		$('#editor').click(function(){
+			switchFocus('editor');
+		});
+		$('#editor').keyup(function(){
+			applyChanges('editor');
+		});
 		$('.editor-template-btn').click(
 			showTemplates
 		);
@@ -53,13 +66,31 @@
 		);
 	}
 
+	function init(){
+		$('#preview').html($('.preview-hidden').html());
+		$('.card-container-current').children('.card').html($('.preview-hidden').html());
+	}
+
 	//real-time update when edited
-	function applyChanges(){
-		var val = $('#editor').val();
-		$('#preview').html(val);
-		if($('#preview').hasClass('preview-multi')){
-			$('.card-container-current').children('.card').html(val);
+	function applyChanges(operator){
+		if(operator == 'editor'){
+			var val = $('#editor').val();
+			applyChangesToPreview(val);
+			applyChangesToCard();
+		} else if(operator == 'preview'){
+			applyChangesToEditor();
+			applyChangesToCard();
 		}
+	}
+	function applyChangesToEditor(){
+		$('#editor').val($('#preview').html());
+	}
+	function applyChangesToPreview(val){
+		$('#preview').html(val);
+	}
+	function applyChangesToCard(){
+		var val = $('#preview').html();
+		$('.card-container-current').children('.card').html(val);
 	}
 
 	//show templates and apply a template to preview and editor
@@ -73,7 +104,7 @@
 	function applyTemplate(){
 		$('.template-container').removeClass('template-container-show');
 		$('#editor').val($(this).html());
-		applyChanges();
+		applyChanges('editor');
 	}
 
 	//switch editing mode (a single card or a bundle of cards)
@@ -106,13 +137,13 @@
 		last.removeClass('card-container-last');
 		current.removeClass('card-container-current');
 		next.addClass('card-container-current');
-		next.children('.card').html('').attr('data-cardID', id + 1);
+		next.children('.card').html($('.preview-hidden').html()).attr('data-cardID', id + 1);
 		next.click(showCard);
 		next.children('.card-delete').click(deleteCard);
 		next.insertAfter(last);
 		resizeCardContainer();
 		$('#editor').val(next.children('.card').html());
-		$('#preview').html(next.children('.card').html());
+		$('#preview').html(next.children('.card').html()).addClass('preview-new');
 	}
 	function deleteCard(){
 		var temp = 0;
@@ -140,6 +171,13 @@
 		for(var i = pos; i < $('.card').length; i++){
 			temp = parseInt($($('.card')[i]).attr('data-cardID'));
 			$($('.card')[i]).attr('data-cardID', temp - 1);
+		}
+	}
+	function removeHint(){
+		if($(this).hasClass('preview-new')){
+			$(this).removeClass('preview-new');
+			$(this).html('<article>\n<section><p><br></p></section>\n</article>');
+			applyChanges('preview');
 		}
 	}
 
@@ -191,12 +229,12 @@
 		}
 		$('#editor').focus();
 		$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
-		applyChanges();
+		applyChanges('editor');
 	}
 	function insertStyle(){
 		$('#editor').val($('#editor').val() + '\n<style>\n\n</style>');
 		$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = $('#editor').val().length - 9;
-		applyChanges();
+		applyChanges('editor');
 	}
 
 	//add classnames with one little click
@@ -208,23 +246,51 @@
 		}
 	}
 	function insertClass(){
-		var result = '';
-		var cursorMove = 0;
-		var start = $('#editor')[0].selectionStart;
-		var end = $('#editor')[0].selectionEnd;
-		result = $('#editor').val().substr(0, start) + $(this).html()  + ' ' + $('#editor').val().substr(end);
-		cursorMove = $(this).html().length + 1;
-		$('#editor').val(result);
-		$('#editor').focus();
-		$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
-		$(this).parent().parent().slideUp(300);
-		applyChanges();
+		$(this).parent().parent().parent().slideUp(300);
+		if($('#editor').hasClass('focus')){
+			var result = '';
+			var cursorMove = 0;
+			var start = $('#editor')[0].selectionStart;
+			var end = $('#editor')[0].selectionEnd;
+			result = $('#editor').val().substr(0, start) + $(this).html()  + ' ' + $('#editor').val().substr(end);
+			cursorMove = $(this).html().length + 1;
+			$('#editor').val(result);
+			$('#editor').focus();
+			$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
+			applyChanges('editor');
+		} else if ($('#preview').hasClass('focus')){
+			var span = document.createElement('span');
+			var sel = window.getSelection();
+			span.className += $(this).html();
+			if (sel.rangeCount) {
+				var range = sel.getRangeAt(0).cloneRange();
+				range.surroundContents(span);
+				sel.removeAllRanges();
+				sel.addRange(range);
+			}
+			applyChanges('preview');
+		}
+	}
+
+	function switchFocus(target){
+		$('.focus').removeClass('focus');
+		$('#' + target).addClass('focus');
 	}
 
 	//change the width when a card is added/deleted (multi mode only)
 	function resizeCardContainer(){
 		var newWidth = $('.cards-container').children().length * 180;
 		$('.cards-container').css('width', newWidth + 'px');
+	}
+
+	//export all the cards
+	function exportCards(){
+		var result = [];
+		var card = $('.card');
+		for(var i = 0; i < card.length; i++){
+			result.push($.trim($(card[i]).html()));
+		}
+		console.log(result);
 	}
 
 })();

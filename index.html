@@ -41,12 +41,24 @@
               <button class="editor-class-type">Size</button>
               <div class="editor-class-content">
                 <ul>
-                  <li class="editor-class-item">text-xx-large</li>
-                  <li class="editor-class-item">text-x-large</li>
-                  <li class="editor-class-item">text-large</li>
-                  <li class="editor-class-item">text-normal</li>
-                  <li class="editor-class-item">text-small</li>
-                  <li class="editor-class-item">text-x-small</li>
+                  <li>
+                    <button class="editor-class-item">text-xx-large</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">text-x-large</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">text-large</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">text-normal</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">text-small</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">text-x-small</button>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -54,10 +66,18 @@
               <button class="editor-class-type">Align</button>
               <div class="editor-class-content">
                 <ul>
-                  <li class="editor-class-item">align-center</li>
-                  <li class="editor-class-item">align-left</li>
-                  <li class="editor-class-item">align-right</li>
-                  <li class="editor-class-item">align-justify</li>
+                  <li>
+                    <button class="editor-class-item">align-center</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">align-left</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">align-right</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item">align-justify</button>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -65,13 +85,27 @@
               <button class="editor-class-type">Color</button>
               <div class="editor-class-content">
                 <ul>
-                  <li class="editor-class-item red">red</li>
-                  <li class="editor-class-item yellow">yellow</li>
-                  <li class="editor-class-item green">green</li>
-                  <li class="editor-class-item blue">blue</li>
-                  <li class="editor-class-item white">white</li>
-                  <li class="editor-class-item gray">gray</li>
-                  <li class="editor-class-item muted">muted</li>
+                  <li>
+                    <button class="editor-class-item red">red</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item yellow">yellow</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item green">green</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item blue">blue</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item white">white</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item gray">gray</button>
+                  </li>
+                  <li>
+                    <button class="editor-class-item muted">muted</button>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -81,7 +115,8 @@
         <textarea class="editor" id="editor"></textarea>
       </aside>
       <article>
-        <div class="preview preview-single" id="preview">
+        <div class="preview preview-new preview-single" id="preview" contenteditable="true"></div>
+        <div class="preview-hidden">
           <div class="preview-hint">
             <p>Paste your <em class="yellow">HTML</em> in the right to see the preview</p>
             <p>Or click the <strong class="blue">"Template"</strong> button to see some templates</p>
@@ -98,7 +133,7 @@
         </div>
       </article>
     </div>
-    <div class="template-container">
+    <!-- <div class="template-container">
       <div class="template preview">
 <article>
   <section>
@@ -194,7 +229,7 @@
   </footer>
 </article>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <script type="text/javascript" src="javascripts/jquery-2.0.3.min.js"></script>
