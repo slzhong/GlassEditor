@@ -192,44 +192,63 @@
 
 	//add html with one little click
 	function insertElement(){
-		var result = '';
-		var cursorMove = 0;
-		var start = $('#editor')[0].selectionStart;
-		var end = $('#editor')[0].selectionEnd;
-		var type = $(this).attr('title');
-		if(type == 'table'){
-			result = '<table class="">\n<tbody></tbody>\n</table>\n';
-			cursorMove = 24;
+		if($('#editor').hasClass('focus')){
+			var result = '';
+			var cursorMove = 0;
+			var start = $('#editor')[0].selectionStart;
+			var end = $('#editor')[0].selectionEnd;
+			var type = $(this).attr('title');
+			if(type == 'table'){
+				result = '<table class="">\n<tbody></tbody>\n</table>\n';
+				cursorMove = 24;
+			}
+			else if(type == 'img'){
+				prompt('请输入图片的url：');
+				result = '<img src="">';
+				cursorMove = 10;
+			}
+			else if(type == 'li' || type == 'tr' || type == 'td'){
+				result = '<' + type +'></' + type + '>';
+				cursorMove = 4;
+			}
+			else if(type == 'em' || type == 'strong'){
+				result= '<' + type +' class=""></' + type + '>';
+				cursorMove = 11 + type.length;
+			} else{
+				result = '<' + type + ' class=""></' + type + '>\n';
+				cursorMove = 11 + type.length;
+			}
+			//add a article tag if editor is empty
+			if($('#editor').val() == ''){
+				$('#editor').val(
+					'<article class="">\n' + result + '</article>'
+				);
+				cursorMove += 19;
+			} else{
+				$('#editor').val(
+					$('#editor').val().substr(0, start) + result + $('#editor').val().substr(end)
+				);
+			}
+			$('#editor').focus();
+			$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
+			applyChanges('editor');
+		} else if($('#preview').hasClass('focus')){
+			var elemType = $(this).attr('title');
+			var elem = document.createElement(elemType);
+			var range = window.getSelection().getRangeAt(0);
+			var selected = range.toString();
+			if(selected){
+				if(elemType == 'em' || elemType == 'strong'){
+					$(elem).html(selected);
+					range.deleteContents();
+					range.insertNode(elem);
+				}
+			} else{
+				$(elem).html('<br>');
+				range.insertNode(elem);
+			}
+			applyChanges('preview');
 		}
-		else if(type == 'img'){
-			result = '<img src="">';
-			cursorMove = 10;
-		}
-		else if(type == 'li' || type == 'tr' || type == 'td'){
-			result = '<' + type +'></' + type + '>';
-			cursorMove = 4;
-		}
-		else if(type == 'em' || type == 'strong'){
-			result= '<' + type +' class=""></' + type + '>';
-			cursorMove = 11 + type.length;
-		} else{
-			result = '<' + type + ' class=""></' + type + '>\n';
-			cursorMove = 11 + type.length;
-		}
-		//add a article tag if editor is empty
-		if($('#editor').val() == ''){
-			$('#editor').val(
-				'<article class="">\n' + result + '</article>'
-			);
-			cursorMove += 19;
-		} else{
-			$('#editor').val(
-				$('#editor').val().substr(0, start) + result + $('#editor').val().substr(end)
-			);
-		}
-		$('#editor').focus();
-		$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
-		applyChanges('editor');
 	}
 	function insertStyle(){
 		$('#editor').val($('#editor').val() + '\n<style>\n\n</style>');
