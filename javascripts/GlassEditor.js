@@ -7,8 +7,6 @@
 		}
 	}
 
-	window.onload = GlassEditor.main();
-
 	function eventHandler(){
 		$('.editor-export-btn').click(
 			exportCards
@@ -278,14 +276,28 @@
 			$('#editor')[0].selectionStart = $('#editor')[0].selectionEnd = start + cursorMove;
 			applyChanges('editor');
 		} else if ($('#preview').hasClass('focus')){
-			var span = document.createElement('span');
-			var sel = window.getSelection();
-			span.className += $(this).html();
-			if (sel.rangeCount) {
-				var range = sel.getRangeAt(0).cloneRange();
-				range.surroundContents(span);
-				sel.removeAllRanges();
-				sel.addRange(range);
+			// var span = document.createElement('span');
+			// var sel = window.getSelection();
+			// span.className += $(this).html();
+			// if (sel.rangeCount) {
+			// 	var range = sel.getRangeAt(0).cloneRange();
+			// 	range.surroundContents(span);
+			// 	sel.removeAllRanges();
+			// 	sel.addRange(range);
+			// }
+			// applyChanges('preview');
+			var range = window.getSelection();
+			var parent = $(range.focusNode).parent();
+			var styleType = $(this).html();
+			if(range.toString() == parent.text()){
+				parent.addClass(styleType);
+			} else {
+				var newSpan = document.createElement('span');
+				var newRange = range.getRangeAt(0).cloneRange();
+				$(newSpan).addClass(styleType);
+				newRange.surroundContents(newSpan);
+				range.removeAllRanges();
+				range.addRange(range);
 			}
 			applyChanges('preview');
 		}
