@@ -18,4 +18,4 @@ ps. It's still a buggy prototype, feel free to report bugs!
  6. You can also edit a bundle of cards here, just click the "Multi" button to switch to the bundle mode, or click the "Single" button to switch back.
  7. Don't like what you've done? Click the clear button to cast the Obliviate charm!
 
-  [1]: http://sherlock917.github.io/GlassEditor/index.html
+  [1]: http://sherlock917.github.io/GlassEditor/
