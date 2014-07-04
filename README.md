@@ -1,14 +1,12 @@
-#Glass Editor#
+# Glass Editor
 
-
-----------
 This is an online editor for Google Glass, which i'm dying for one but can't have one. To see the demo, you can click [here][1].
 
 ps. It's still a buggy prototype, feel free to report bugs!
 
+***
 
-----------
-###Instruction###
+## Instruction
 
  1. On the page of Glass Editor, you can see a large area on the left and a small one on the right.
  2. The large one is the preview area, you can see the preview of the card you are editing there.And now, i am happy to announce that you can edit in-place right in the preview area. Just double click the preview area to write your own stuff or apply a template then change the content of the template.
